@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REGISTRO</title>
+    <script src="./js/registro.js"></script>
 </head>
 
 <body>
     <h1>Formulario de datos de empleado</h1>
     <form>
-        <label for="employee-id">EmployeeID:</label>
-        <input type="text" id="employee-id" name="employeeID"><br>
+        <label style="display:none;" for="employee-id" id="employee-label">EmployeeID: </label><br>
 
         <label for="last-name">LastName:</label>
         <input type="text" id="last-name" name="lastName"><br>
@@ -64,10 +64,16 @@
         <label for="reports-to">ReportsTo:</label>
         <input type="text" id="reports-to" name="reportsTo"><br>
 
-        <input type="submit" value="Guardar" onclick="guardarEmpleado()">
+        <input type="button" value="Guardar" id="boton" onclick="guardarEmpleado()">
     </form>
-
-    <script src="./js/registro.js"></script>
+    <script>
+        var id = obtenerParametroUrl('id');
+        if (id != null) {
+            var empleado = obtenerEmpleado(id);
+            console.log(empleado);
+            llenarFormulario(empleado);
+        }
+    </script>
 </body>
 
 </html>

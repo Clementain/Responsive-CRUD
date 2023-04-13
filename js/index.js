@@ -26,12 +26,13 @@ $(document).ready(() => {
             {
                 title: 'Operaciones', data: null, render: (data, type) => {
                     return '<button type="button" onclick="eliminar(' +
-                        data.employeeID + ')">Eliminar</button>';
+                        data.employeeID + ')">Eliminar</button> <button type="button" onclick="editar(' +
+                        data.employeeID + ')">Editar</button>';
                 }
             },
 
         ],
-        // responsive: true,
+        responsive: true,
         // columnDefs: [
         //     { responsivePriority: 1, targets: [1, 2, 3] },
         //     { responsivePriority: 2, targets: -1 },
@@ -40,5 +41,25 @@ $(document).ready(() => {
 });
 
 function eliminar(id) {
-    alert(id);
+    const datosLocalStorage = JSON.parse(localStorage.getItem('empleados'));
+    const index = datosLocalStorage.findIndex(empleado => empleado.employeeID === id);
+    if (index !== -1) {
+        datosLocalStorage.splice(index, 1);
+        localStorage.setItem('empleados', JSON.stringify(datosLocalStorage));
+        alert('Empleado eliminado exitosamente');
+    } else {
+        alert('No se encontró el empleado');
+    }
+    location.reload()
 }
+
+function editar(id) {
+    window.location.href = "./FormularioRegistro.html?id=" + id;
+}
+
+function agregarEmpleado(){
+    window.location.replace("./FormularioRegistro.html");
+
+}
+
+
