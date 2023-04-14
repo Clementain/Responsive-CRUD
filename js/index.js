@@ -48,12 +48,13 @@ $(document).ready(() => {
                         $('<table/>').append(data) :
                         false;
                 }
-                //display: $.fn.dataTable.Responsive.display.modal()
             }
         },
         columnDefs: [
-            { responsivePriority: 1, targets: [0, 1, 2, 3, 12, 13, 14, 15, 16] },
-            { responsivePriority: 2, targets: -1 },
+            { responsivePriority: 1, targets: 16 },
+            { responsivePriority: 2, targets: [0, 1, 2] },
+            { responsivePriority: 3, targets: [3, 12, 13, 14, 15] },
+            { responsivePriority: 4, targets: -1 },
         ]
     });
 });
